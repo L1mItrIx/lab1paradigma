@@ -55,3 +55,61 @@ def registro_venta(productos, cantidad):
 tienda_estado()
 registro_venta("Monitor", 2)
 print("Ventas Totales:", ventas_totales)
+
+# PARTE 3
+
+# Agregar un nuevo producto
+def agregar_producto(nombre, precio):
+    productos.append(nombre)
+    inventario[nombre] = precio
+    print(f"Producto {nombre} agregado con precio ${precio}")
+
+# Eliminar un producto
+def eliminar_producto(nombre):
+    if nombre in productos:
+        productos.remove(nombre)
+        del inventario[nombre]
+        print(f"Producto {nombre} eliminado correctamente")
+    else:
+        print("El producto no existe")
+
+# Actualizar el precio de un producto
+def actualizar_precio(nombre, nuevo_precio):
+    if nombre in inventario:
+        inventario[nombre] = nuevo_precio
+        print(f"Precio de {nombre} actualizado a ${nuevo_precio}")
+    else:
+        print("El producto no existe")
+
+# Mostrar inventario
+def mostrar_inventario():
+    print("Productos disponibles:")
+    for nombre, precio in inventario.items():
+        print(f"{nombre}: ${precio}")
+
+agregar_producto("Mouse", 25.99)
+agregar_producto("Docking", 25.99)
+actualizar_precio("Mouse", 25.00)
+eliminar_producto("Docking")
+mostrar_inventario()
+# PARTE 4
+
+# Calcular el precio total del inventario
+def calcular_precio_total():
+    total = sum(inventario.values())
+    print(f"Precio total del inventario: ${total}")
+
+# Filtrar productos por rango de precio
+def filtrar_por_precio(precio_min, precio_max):
+    print(f"Productos entre ${precio_min} y ${precio_max}:")
+    for nombre, precio in inventario.items():
+        if precio_min <= precio <= precio_max:
+            print(f"{nombre}: ${precio}")
+
+# Reporte de ventas acumuladas
+def reporte_ventas():
+    print(f"Ventas acumuladas: ${ventas_totales}")
+
+calcular_precio_total()
+filtrar_por_precio(50, 1000)
+reporte_ventas()
